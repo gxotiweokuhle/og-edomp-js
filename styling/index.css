@@ -1,0 +1,13 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#logo{
+    width: 90px;
+    background-color: black;
+
+}
+
+#navs :hover{
+    color: purple;
+}
