@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+a:hover{
+    color: palevioletred !important;
+}
+section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+}
+iframe{
+    width: 300px;
+    height: 300px;
+}
