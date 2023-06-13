@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+main {
+    min-height: 100vh;
+    padding: 10px;
+}
+.allproduct-imgs {
+    width: 450px;
+    height: 450px;
+    padding: 5px;
+}
+
+.allproducts {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 60px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.allproducts>div {
+   
+    padding: 10px;
+    text-align: center;
+}
