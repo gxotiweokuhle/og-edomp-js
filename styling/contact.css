@@ -19,3 +19,15 @@ form {
 .message{
     background-color: grey !important;
 }
+.error {
+    font-size: 14.5px;
+    margin-top: 5px;
+  }
+.failure-icon,
+  .error {
+    color: red;
+}
+  
+.success-icon {
+    color: green;
+  }

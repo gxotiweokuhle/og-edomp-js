@@ -1,29 +1,23 @@
-
-let username = document.getElementById('username').value.trim()
-let usernumber = document.getElementById('usernumber').value.trim()
-let useremail = document.getElementById('usermail').value.trim()
-let location = document.getElementById('location').value.trim()
+let username = id('username')
+let usernumber = id('usernumber')
+let useremail = id('useremail')
+let location = id('location')
+let errorMsg = document.getElementsByClassName('error')
 
 //using trim to avoid spaces in the input
 
-/*try{
-    let button = document.getElementById('btn')
-    button.addEventListener('click', (e) =>{
-        if((username === '') && (usernumber == '') ){
-            throw {errorname:'Empty Error',
-                message: 'Please fill those fields!'}
-        }    
-    })
-}
-catch(e){
-    console.log(e)
-}*/
-
-let button = document.getElementById('btn')
-button.addEventListener('click', (e) =>{
-    e.preventDefault()
-    if((username == '') && (usernumber == '')) || ((usernumber == '') && (useremail == '')){
-        alert('Please fill in all fields!')
+let validation = (id, serial, message ) => {
+    if(id.value.trim()=== ''){
+        errorMsg[serial].innerHTML = message;
+       
     }
 }
-)
+
+
+button.addEventListener('submit', (e) =>{
+    e.preventDefault()
+    validation(username, 0, 'Enter your fullname')
+    validation(usernumber, 1, 'Enter your fullname')
+    validation(useremail, 2, 'Enter your fullname')
+    validation(location, 3, 'Enter your fullname')
+});
