@@ -39,5 +39,11 @@ body{
   align-content: center;
 }
 a:hover{
-    color: pink !important;
+    color: salmon !important;
+}
+#downnav{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
 }
