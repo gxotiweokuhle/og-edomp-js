@@ -125,67 +125,93 @@ let products = [
         category:"Bedroom Collection",
         quantity: "5",
     },
+    {
+        id:16,
+        image:"https://i.postimg.cc/43vWcFk3/peyton-acacia-wood-pedestal.jpg",
+        itemname:"Acacia Chest Drawer",
+        Desc:"The Vancouver chest of drawers combines the robust good looks of solid wood with a calming contemporary design to add a sense of warmth to any modern bedroom.",
+        price:"R 5 000",
+        category:"Bedroom Collection",
+        quantity: "5",
+    },
 ];
 function appear(event){
 }
 let featureGroup = document.querySelector(".allproducts");
 products.forEach((data) => {
   featureGroup.innerHTML += `
-    <div class="col-lg-4 col-md-4 col-12">
-     <div class="card p-1 mx-auto px-3 mb-3 text-center" style="width:295px; height="400px">
-        <img class="card-img-top" src="${data.image}" alt="Card image" style="width:250px; height: 300px; >
-        <div class="card-body text-centre">
-        <h4 class="card-title">${data.itemname}</h4>
-        <h4 class="card-title">${data.Desc}</h4>
-        <h4 class="card-title">${data.price}</h4>
-        <a href="" class="btn btn-primary" style="width: 110px">Add to Cart</a>
-        </div>
-    </div>`;
+
+    <div class="col-lg-4 col-md-4 col-12 justify-content-center" id="card-head">
+            <div class="featured-item">
+            <div class="product-img">
+               <a href="#">
+                  <img src="${data.image}" alt="Images" style="width: 300px">
+               </a>
+            </div>
+                <div class="product-name">
+               <h3><a href="#">${data.itemname}</a></h3>
+               <hr>
+               <div class="product-price">
+                  <h4 class="price">${data.price}</h4>
+                  <span>(4.9)<i class="fa fa-star"></i></span>
+               </div>
+               <hr>
+               <div class="product-btn">
+                  <button type="button" data-name="Oxford" data-price="1200"  data-id="${data.id}" class="add-to-cart border-radius-5"> Add to cart</button>
+               </div>
+    </div>
+  `
 });
 
-let cart = JSON.parse(localStorage.getItem("Products")) || [];
 
-function addToCart(productId) {
-  const product = products.find((product) => product.id === productId);
-  if (product && product.quantity > 0) {
-    cart.push(product);
-    product.quantity--;
-    updateCart();
-  }
+const items =document.querySelector('#card-head'),
+shoppingCartContent = document.getElementById('card-content')
+
+loadEventListeners();
+
+function loadEventListeners(){
+    //when a new item is added
+    items.addEventListener('click', buyItem);
+
+    function buyItem(e){
+        if(e.target.classList.contains('add-to-cart')){
+            //read the product value once the btn is clicked
+
+            const items = e.target.parentElement.parentElement;
+            getItemInfo(items);
+        }
+    }
 }
 
-function removeFromCart(index) {
-    let removedProduct = cart.splice(index, 1)[0];
-    removedProduct.quantity++;
-    updateCart();
+function getItemInfo(items){
+    //create an object for cart
+  const cartInfo = { 
+    image: items.querySelector('img').src,
+    itemname: items.querySelector('h3').innerHTML,
+    price: items.querySelector('.price').innerHTML,
+    id: items.querySelector('button').getAtrribute('data-id')
+}
+addToCart(cartInfo);
 }
 
-function updateCart() {
-    const cartContainer = document.getElementById("cart-body");
-    localStorage.setItem("Products", JSON.stringify(cart));
-    cartContainer.innerHTML = "";
-    cart.forEach((product, index) => {
-      const cartItem = document.createElement("div");
-      cartItem.innerHTML = `
-        <span>${product.name}</span>
-        <span>${product.price}</span>
-        <input type="number" placeholder="1" min="1" width="50px" height="40px">
-        <p>Total $ ${product.price}</p>
-        <button onclick="removeFromCart(${index})" class="rembutton">✖</button>
-      `;
-      cartContainer.appendChild(cartItem);
-    });
-      calculateTotal();
-  }
-  function calculateTotal() {
-    let totalElement = document.getElementById("results");
-    let total = 0 
-    cart.forEach(item => {
-      total +=  eval(item.price)
-    })
-    totalElement.textContent = `$${total}`;
-  }
-  
-  displayProducts();
-  
-  updateCart();
+function addToCart(items){
+    const row = document.createElement('tr');
+    row.innerHTML =`
+    
+    <tr>
+    <td>
+        <img src="${items.image}" width = "100">
+    </td>
+    <td>
+        ${items.itemname}
+    </td>
+    <td>
+        ${items.price}
+    </td>
+    <td>
+        <a href = "#" class="remove" data-id ="${items.id}">X</a>
+    </td>
+    </tr>`
+
+    shoppingCartContent.appendChild(row);
+}

@@ -14,7 +14,7 @@
 
   <!--topnav remain at the top-->
         <header>
-          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <nav class="navbar navbar-expand-lg bg-dark">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">FurnitureExperts</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,8 +28,23 @@
                   <li class="nav-item">
                     <a class="nav-link" href="#">Products</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Cart</a>
+                    <li class="submenu">
+                      <img src="https://i.postimg.cc/xC5sY8MM/shopping-cart-xxl.png"  width="25" height="25" id="img-cart">
+                      <div id="shopping-cart">
+                              <table id="cart" class="u-full-width">
+                                  <thead>
+                                      <tr>
+                                          <th>Image</th>
+                                          <th>Name</th>
+                                          <th>Price</th>
+
+                                      </tr>
+                                  </thead>
+                                  <tbody id="cart-content"></tbody>
+                              </table>
+
+                              <button href="#" id="clear-cart" class="button u-full-width">Checkout</button>
+                      </div>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">About Us</a>
@@ -46,62 +61,52 @@
           </nav>
         </header>
 
+        <!---filter btns-->
 
-        <div class="ms-auto">
-            <button type="button" class="btn btn-primary  mx-5" data-bs-toggle="modal" data-bs-target="#myModal" id="cart-btn">
-                <img src="https://i.postimg.cc/xC5sY8MM/shopping-cart-xxl.png" width="25" height="25" class="d-inline-block rounded-circle me-2">
-                 Open Cart</button>
-        </div>
-    </div>
+        <section>
 
+         <div class="featured-area pt-100 pb-70">
+          <div class="container">
+             <div class="tab featured-tab-area">
+                <div class="row justify-content-center">
 
-
-
-
-
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                  <p>Total: <span id="total"></span></p>
-                <div class="modal-header">
-                  <h4 class="modal-title">Added Items</h4>
-                  <button type="button"  class="btn-close" data-bs-dismiss="modal"></button>
+                   <div class="col-lg-4 col-md-8">
+                      <ul class="tabs active">
+                         <li class="">
+                            <a href="#">
+                               All
+                            </a>
+                         </li>
+                         <li class="">
+                            <a href="#">
+                               Lounge
+                            </a>
+                         </li>
+                         <li class="">
+                            <a href="#">
+                               Dining
+                            </a>
+                         </li>
+                         <li class="">
+                            <a href="#">
+                               Bedroom
+                            </a>
+                         </li>
+                      </ul>
+                   </div>
                 </div>
-                <div class="cart-body">
-                <div id="results"><h5>Total</h5></div>
-                <div id="checkout"><h5>Checkout</h5></div>
-                </div>
-                <div class="modal-footer">
-                
-                  
-                </div>
-              </div>
-            </div>
-          </div>
+        </section>
 
-        <main>
-            <div class="sort">
-                <label>Sort by:</label>
-                <select id="sort">
-                    <option value="Low to high">Low to High</option>
-                    <option value="High to Low">High to Low</option>
-                </select>
-            </div>
-            <div class="sort">
-                <label>Filter by:</label>
-                <select id="filter">
-                    <option value="Lounge" >Lounge Collection</option>
-                    <option value="Bedroom">Bedroom Collection</option>
-                    <option value="Kitchen">Kitchen Collection</option>
-                </select>
-            </div>
-            <div class="allproducts"></div>
+        <!---products-->
+          <main>
+            
+            <div class="allproducts row justify-content-center"></div>
              <div id="cart-container">
             <div id="cart-body"></div>
-        </div>
-        </main>
+        
+          </main>
 
-       
+
 
         
         <footer class="bg-dark text-centre" id="downnav">
