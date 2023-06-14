@@ -1,23 +1,14 @@
-let username = id('username')
-let usernumber = id('usernumber')
-let useremail = id('useremail')
-let location = id('location')
+let username = document.getElementById('username').value.trim()
+let usernumber = document.getElementById('usernumber').value.trim()
+let useremail = document.getElementById('useremail').value.trim()
+let location = document.getElementById('location').value.trim()
 let errorMsg = document.getElementsByClassName('error')
+let button = document.getElementById('btn')
 
 //using trim to avoid spaces in the input
 
-let validation = (id, serial, message ) => {
-    if(id.value.trim()=== ''){
-        errorMsg[serial].innerHTML = message;
-       
-    }
-}
-
-
-button.addEventListener('submit', (e) =>{
+button.addEventListener('click', (e) => {
     e.preventDefault()
-    validation(username, 0, 'Enter your fullname')
-    validation(usernumber, 1, 'Enter your fullname')
-    validation(useremail, 2, 'Enter your fullname')
-    validation(location, 3, 'Enter your fullname')
-});
+        //if statements
+}
+)
