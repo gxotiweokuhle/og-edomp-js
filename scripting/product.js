@@ -163,7 +163,8 @@ products.forEach((product, id) => {
   `
 });
 
-let cart = JSON.parse(window.localStorage.getItem("Products")) || [];
+let cart = JSON.parse(window.localStorage.getItem("Products")) || [];//add to second local storage
+if()
 
 function addToCart(productId) {
   const product = products.find((product) => product.id === productId);
