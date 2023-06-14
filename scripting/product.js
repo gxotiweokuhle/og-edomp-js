@@ -138,80 +138,76 @@ let products = [
 function appear(event){
 }
 let featureGroup = document.querySelector(".allproducts");
-products.forEach((data) => {
+products.forEach((product, id) => {
   featureGroup.innerHTML += `
 
     <div class="col-lg-4 col-md-4 col-12 justify-content-center" id="card-head">
             <div class="featured-item">
             <div class="product-img">
                <a href="#">
-                  <img src="${data.image}" alt="Images" style="width: 300px">
+                  <img src="${product.image}" alt="Images" style="width: 300px">
                </a>
             </div>
                 <div class="product-name">
-               <h3><a href="#">${data.itemname}</a></h3>
+               <h3><a href="#">${product.itemname}</a></h3>
                <hr>
                <div class="product-price">
-                  <h4 class="price">${data.price}</h4>
+                  <h4 class="price">${product.price}</h4>
                   <span>(4.9)<i class="fa fa-star"></i></span>
                </div>
                <hr>
                <div class="product-btn">
-                  <button type="button" data-name="Oxford" data-price="1200"  data-id="${data.id}" class="add-to-cart border-radius-5"> Add to cart</button>
+                  <button type="button" data-name="Oxford" data-price="1200"  data-id="${product.id}" class="add-to-cart border-radius-5" onclick="addToCart(${id})"> Add to cart</button>
                </div>
     </div>
   `
 });
 
+let cart = JSON.parse(window.localStorage.getItem("Products")) || [];
 
-const items =document.querySelector('#card-head'),
-shoppingCartContent = document.getElementById('card-content')
-
-loadEventListeners();
-
-function loadEventListeners(){
-    //when a new item is added
-    items.addEventListener('click', buyItem);
-
-    function buyItem(e){
-        if(e.target.classList.contains('add-to-cart')){
-            //read the product value once the btn is clicked
-
-            const items = e.target.parentElement.parentElement;
-            getItemInfo(items);
-        }
-    }
+function addToCart(productId) {
+  const product = products.find((product) => product.id === productId);
+  window.localStorage.setItem("Items", JSON.stringify(cart))
+  if (product && product.quantity > 0) {
+    cart.push(product);
+    product.quantity--;
+    updateCart();
+  }
 }
 
-function getItemInfo(items){
-    //create an object for cart
-  const cartInfo = { 
-    image: items.querySelector('img').src,
-    itemname: items.querySelector('h3').innerHTML,
-    price: items.querySelector('.price').innerHTML,
-    id: items.querySelector('button').getAtrribute('data-id')
+function updateCart() {
+    const cartContainer = document.getElementById("cart-body");
+    localStorage.setItem("Items", JSON.stringify(cart))
+    cartContainer.innerHTML = "";
+    cart.forEach((product, index) => {
+        const cartItem = document.createElement("div")
+        cartItem.innerHTML = `<span>${product.itemname}</span>
+        <span>${product.price}</span>
+        <input id="inputFeet" type="number" placeholder="1"
+        oninput="lengthConverter(this.value)" onchange="lengthConverter(this.value)" min="1" width="50px" height="40px"></p>
+        <p>Total $ <span id="results"></span></p>
+        <button onclick="removeFromCart(${index})" id="rembutton">✖</button>
+        `
+        cartContainer.appendChild(cartItem)
+    });
 }
-addToCart(cartInfo);
+    function calculateTotal() {
+    let totalElement = document.getElementById("total");
+    let total = cart.reduce((acc, product) => {
+      return acc + parseInt(product.price.replace("R", ""));
+    }, 0);
+    totalElement.textContent = `R${total.toFixed(2)}`;
+  }
+
+function loadItems() {
+  let loadProducts = localStorage.getItem("Products");
+  if (loadProducts) {
+    cart = JSON.parse(loadProducts);
+    updateCart();
+  }
 }
 
-function addToCart(items){
-    const row = document.createElement('tr');
-    row.innerHTML =`
-    
-    <tr>
-    <td>
-        <img src="${items.image}" width = "100">
-    </td>
-    <td>
-        ${items.itemname}
-    </td>
-    <td>
-        ${items.price}
-    </td>
-    <td>
-        <a href = "#" class="remove" data-id ="${items.id}">X</a>
-    </td>
-    </tr>`
-
-    shoppingCartContent.appendChild(row);
-}
+window.addEventListener("load", function () {
+  loadItems();
+});
+displayProducts();
