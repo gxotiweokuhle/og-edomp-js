@@ -7,7 +7,7 @@
 a:hover{
     color: pink !important;
 }
-.btn:hover{
+.btn btn-primary:hover{
     color: green !important;
 }
 body{
