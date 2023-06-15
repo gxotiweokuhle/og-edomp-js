@@ -1,3 +1,4 @@
+
 let products = [
     {
         id:1,
@@ -5,7 +6,7 @@ let products = [
         itemname:"Jagger 2-Seater Couch",
         price:"R 11 000",
         category:"Lounge Collection",
-        quantity: "5",
+        quantity: "15",
     },
     {
         id:2,
@@ -97,14 +98,14 @@ let products = [
         quantity: "5",
     },
 ];
-function appear(event){
-}
+function appear(category = ""){
 let featureGroup = document.querySelector(".allproducts");
+featureGroup.innerHTML = "";
 products.forEach((product, id) => {
-  featureGroup.innerHTML += `
-
+  if(category === "" || product.category === category) {
+    featureGroup.innerHTML += `
     <div class="col-lg-4 col-md-4 col-12 justify-content-center" id="card-head">
-            <div class="featured-item p-5">
+            <div class="featured-item p-0">
             <div class="product-img">
                <a href="#">
                   <img src="${product.image}" alt="Images" style="width: 300px">
@@ -123,9 +124,19 @@ products.forEach((product, id) => {
                </div>
     </div>
   `
+  }
 });
+}
+appear();
 
-let cart = JSON.parse(window.localStorage.getItem("Products")) || [];//add to second local storage
+function filter() {
+  let selectCategory = document.getElementById("categories");
+  let selectedCategory = selectCategory.value;
+  appear(selectedCategory);
+}
+
+
+let cart = JSON.parse(window.localStorage.getItem("Items")) || [];//add to second local storage
 
 
 function addToCart(productId) {
@@ -136,12 +147,20 @@ function addToCart(productId) {
     product.quantity--;
     updateCart();
   }
+  else{
+      console.log('Out of Stock');
+      alert('This product is currently not available')
+  }
+  removeFromCart();
+  updateCart();
+  appear();
 }
 
 function removeFromCart(index) {
     let removedProduct = cart.splice(index, 1)[0];
     removedProduct.quantity++;
     updateCart();
+    appear();
 }
 
 function updateCart() {
@@ -155,28 +174,48 @@ function updateCart() {
         <input id="inputFeet" type="number" placeholder="1"
         oninput="lengthConverter(this.value)" onchange="lengthConverter(this.value)" min="1" width="50px" height="40px"></p>
         <button onclick="removeFromCart(${index})" id="rembutton">✖</button>
+        <button onclick="restart()" class="btn btn-success">Checkout</button>
         `
         cartContainer.appendChild(cartItem)
     });
     calculateTotal()
 }
+appear();
     function calculateTotal() {
     let totalElement = document.getElementById("total");
-    let total = cart.reduce((acc, product) => {
-      return acc + parseInt(product.price.replace("R", " " ));
-    }, 0);
-    totalElement.textContent = `R${total}`;
+    let total = 0;
+    cart.forEach((product) => {
+        total += eval(product.price);
+    });
+    
+    totalElement.textContent = `Total: R${total}`;
   }
+ 
+  appear();
+  function clearCheckoutCart() {
+    let modalFooter = document.querySelector(".modal-footer");
+    modalFooter.innerHTML = `
+    <h4>Thank You! Your Order Has Been Processed!</h4>`;
+    cart = [];
+    updateCart();
+}
+
+function restart() {
+    window.location.reload();
+    alert('thank you for purchasing')
+  }
+
 
 function loadItems() {
   let loadProducts = localStorage.getItem("Products");
   if (loadProducts) {
     cart = JSON.parse(loadProducts);
     updateCart();
+    appear();
   }
 }
 
 window.addEventListener("load", function () {
   loadItems();
+  appear();
 });
-displayProducts();

@@ -45,3 +45,44 @@ body{
     cursor: pointer;
     padding-top: 10px;
   }
+  @media screen and (max-width: 300px) {
+    .featured-item{
+        width: 100% !important;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    img{
+        width: 100% !important;
+    }
+  }
+
+  @media screen and (max-width: 420px ) {
+    img{
+        width: 100% !important;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    img{
+        width: 100% !important;
+    }
+  }
+  @media screen and (max-width: 520px) {
+    img{
+        width: 100% !important;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    img{
+        width: 100% !important;
+    }
+  }
+  @media screen and (max-width: 610px) {
+    img{
+        width: 100% !important;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    img{
+        width: 100% !important;
+    }
+  }
