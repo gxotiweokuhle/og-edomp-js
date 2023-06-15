@@ -175,9 +175,9 @@ function updateCart() {
         cartItem.innerHTML = `<span>${product.itemname}</span>
         <span>${product.price}</span>
         <input id="inputFeet" type="number" placeholder="1"
-        oninput="lengthConverter(this.value)" onchange="lengthConverter(this.value)" min="1" width="50px" height="40px"></p>
+        oninput="lengthConverter(${product.quantity})" onchange="lengthConverter(${product.quantity})" min="1" width="50px" height="40px"></p>
         <button onclick="removeFromCart(${index})" id="rembutton">✖</button>
-        <button onclick="restart()" class="btn btn-success">Checkout</button>
+        
         `
         cartContainer.appendChild(cartItem)
     });
@@ -188,7 +188,7 @@ appear();
     let totalElement = document.getElementById("total");
     let total = 0;
     cart.forEach((product) => {
-        total += eval(product.price);
+        total += eval((product.price * product.quantity));
     });
     
     totalElement.textContent = `Total: R${total}`;
