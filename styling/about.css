@@ -10,7 +10,8 @@ body{
     scroll-behavior: smooth;
 }
 img{
-    max-width: 300px;
+    max-width: 400px;
+    padding-right: 30px;
 }
 a:hover{
     color: salmon !important;

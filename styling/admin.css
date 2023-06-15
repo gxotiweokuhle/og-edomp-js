@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+   
+}
+body{
+    margin: 0;
+    overflow-x: hidden;
+}
+.table{
+    padding: 20px;
+    width: 25%;
+}
+tr{
+    border: 2px solid black;
+    
+}
+td{
+border: 2px solid black;
+text-align: center;
+}
+table {
+    margin: auto;
+    border: solid black;
+    width:  60%;
+    text-align: center ;
+}
+th {
+    border: solid black !important;
+    width: 25%;
+}
+
+a:hover{
+    color: salmon !important;
+}
+form {
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+}
