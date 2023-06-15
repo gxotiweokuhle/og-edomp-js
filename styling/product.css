@@ -4,7 +4,9 @@
     box-sizing: border-box;
     
 }
-
+a:hover{
+    color: pink !important;
+}
 body{
     overflow-x: hidden;
     scroll-behavior: smooth;
