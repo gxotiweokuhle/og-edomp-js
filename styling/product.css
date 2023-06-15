@@ -7,6 +7,9 @@
 a:hover{
     color: pink !important;
 }
+.btn:hover{
+    color: green !important;
+}
 body{
     overflow-x: hidden;
     scroll-behavior: smooth;
