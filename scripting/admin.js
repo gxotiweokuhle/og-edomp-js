@@ -6,11 +6,11 @@ if(!arr2){
 function addObject() {
       
   let Value = {
-    id: id,
-    image: image,
-    itemname: itemname,
-    price: price,
-    category: category,
+    id: document.getElementById("id.no").value,
+    image: document.getElementById("image").value,
+    itemname: document.getElementById("itemname").value,
+    price: document.getElementById("price").value,
+    category: document.getElemntById("cat").value,
 
   };
 
