@@ -21,7 +21,7 @@ function addObject() {
 
   let table = document.querySelector(".tableInfo");
   table.innerHTML = "";
-  secondArr.forEach((product) => {
+  arr2.forEach((product) => {
     table.innerHTML += 
     ` 
     <tbody>
