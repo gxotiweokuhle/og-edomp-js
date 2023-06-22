@@ -1,5 +1,5 @@
 
-let products = JSON.parse(localStorage.setItem("products")) || [
+let products = [
     {
         id:1,
         image:"https://i.postimg.cc/KjLFVxFG/1.jpg",
