@@ -10,7 +10,7 @@ function addObject() {
     image: document.getElementById("image").value,
     itemname: document.getElementById("itemname").value,
     price: document.getElementById("price").value,
-    category: document.getElemntById("cat").value,
+    category: document.getElementById("cat").value,
 
   };
 
