@@ -38,16 +38,9 @@ function addObject() {
     `;
   
 });
-deleteProducts();
+
 }
-function deleteProducts(productId) {
-    const adIndex = arr2.findIndex((product) => product.id === productId);
-    if(adIndex !== -1) {
-        arr2.splice(adIndex, 1);
-    }
-    localStorage.setItem("products", JSON.stringify(arr2));
-    addObject();
-}
+
 function restart() {
   window.location.reload();
 }
