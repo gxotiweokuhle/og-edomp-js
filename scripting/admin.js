@@ -31,16 +31,23 @@ function addObject() {
       <td>${product.itemname}</td>
       <td>${product.price}</td>
       <td>${product.category}</td>
-
+      <button class="deleteBtn" onclick="deleteProducts(${product.id})"> Delete </button>
     </tr>
     <tr>
     </tbody>
     `;
   
 });
-
+deleteProducts();
 }
-
+function deleteProducts(productId) {
+    const adIndex = arr2.findIndex((product) => product.id === productId);
+    if(adIndex !== -1) {
+        arr2.splice(adIndex, 1);
+    }
+    localStorage.setItem("products", JSON.stringify(arr2));
+    addObject();
+}
 function restart() {
   window.location.reload();
 }
