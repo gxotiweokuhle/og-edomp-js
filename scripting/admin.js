@@ -1,4 +1,4 @@
-let arr2 = JSON.parse(localStorage.getItem(products));
+let arr2 = JSON.parse(localStorage.getItem("products"));
 if(!arr2){
   arr2 = [];
 }
