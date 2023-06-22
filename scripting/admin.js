@@ -4,17 +4,6 @@ if(!arr2){
 }
 
 function addObject() {
-  try{
-    id: document.getElementById("id.no").value,
-    image: document.getElementById("image").value,
-    itemname: document.getElementById("itemname").value,
-    price: document.getElementById("price").value,
-    category: document.getElementById("cat").value,
-      
-   if(id === "" || image === "" || itemname === "" || price === "" || category === ""){
-      alert("please fill in all required fields.");
-      return;
-    }
       
   let Value = {
     id: id,
@@ -28,10 +17,6 @@ function addObject() {
  
   arr2.push(Value)
   localStorage.setItem("products", JSON.stringify(arr2));
-
-    catch(e){
-    console.log(e.stack)
-  }
 
 
   let table = document.querySelector(".tableInfo");
