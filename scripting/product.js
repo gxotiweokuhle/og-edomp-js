@@ -136,15 +136,13 @@ function filter() {
 }
 
 
-let cart = JSON.parse(window.localStorage.getItem("Products"));//add to second local storage
-if(!cart){
-    cart = [];
-}
+let cart = JSON.parse(window.localStorage.getItem("Items"));//add to second local storage
+
     
 
 function addToCart(productId) {
   const product = products.find((product) => product.id === productId);
-  window.localStorage.setItem("arr2", JSON.stringify(cart))
+  
   if (product && product.quantity > 0) {
     cart.push(product);
     product.quantity--;
