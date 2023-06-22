@@ -136,7 +136,7 @@ function filter() {
 }
 
 
-let cart = JSON.parse(window.localStorage.getItem("arr2"));//add to second local storage
+let cart = JSON.parse(window.localStorage.getItem("Products"));//add to second local storage
 if(!cart){
     cart = [];
 }
@@ -188,7 +188,7 @@ appear();
     let totalElement = document.getElementById("total");
     let total = 0;
     cart.forEach((product) => {
-        total += eval((product.price * product.quantity));
+        total += eval(product.price);
     });
     
     totalElement.textContent = `Total: R${total}`;
